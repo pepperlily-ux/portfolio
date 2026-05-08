@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Genify Community - AI 러너들의 커뮤니티</title>
+  <link rel="stylesheet" href="gpters-brand-tokens.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--layer-mid);
+      color: var(--content-primary);
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-md);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--spacing-24);
+    }
+
+    /* Header */
+    .header {
+      background: var(--layer-base);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: var(--spacing-16) 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: var(--text-heading-size);
+      font-weight: var(--text-heading-weight);
+      color: var(--content-highlight);
+    }
+
+    .logo span {
+      color: var(--content-brand);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-32);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--spacing-24);
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: var(--text-label-m-size);
+      font-weight: var(--text-label-m-weight);
+      color: var(--content-primary);
+      transition: color 200ms;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--content-brand);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-12);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-8);
+      background: var(--layer-low);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-8) var(--spacing-14);
+      width: 240px;
+    }
+
+    .search-box input {
+      border: none;
+      background: transparent;
+      font-family: var(--font-family);
+      font-size: var(--font-size-sm);
+      color: var(--content-primary);
+      width: 100%;
+      outline: none;
+    }
+
+    .search-box input::placeholder {
+      color: var(--content-muted);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-8);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-family);
+      transition: all 200ms;
+    }
+
+    .btn-sm {
+      height: var(--button-height-sm);
+      padding: 0 var(--spacing-12);
+      font-size: var(--text-label-m-size);
+      font-weight: var(--text-label-m-weight);
+      border-radius: var(--radius-sm);
+    }
+
+    .btn-md {
+      height: var(--button-height-md);
+      padding: 0 var(--spacing-16);
+      font-size: var(--text-label-m-size);
+      font-weight: var(--text-label-m-weight);
+      border-radius: var(--radius-md);
+    }
+
+    .btn-lg {
+      height: var(--button-height-lg);
+      padding: 0 var(--spacing-24);
+      font-size: var(--text-label-l-size);
+      font-weight: var(--text-label-l-weight);
+      border-radius: var(--radius-lg);
+    }
+
+    .btn-primary {
+      background: var(--layer-brand);
+      color: var(--content-inverse);
+    }
+
+    .btn-primary:hover {
+      background: #e55f00;
+    }
+
+    .btn-secondary {
+      background: var(--layer-base);
+      color: var(--content-primary);
+      border: 1px solid var(--border-strong);
+    }
+
+    .btn-secondary:hover {
+      background: var(--layer-mid);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--content-primary);
+    }
+
+    .btn-ghost:hover {
+      background: var(--layer-low);
+    }
+
+    /* Icon Button */
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-lg);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: var(--content-primary);
+      position: relative;
+      transition: all 200ms;
+    }
+
+    .icon-btn:hover {
+      background: var(--layer-low);
+    }
+
+    .icon-btn .badge {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      width: 8px;
+      height: 8px;
+      background: var(--informative-red);
+      border-radius: var(--radius-full);
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-full);
+      background: var(--layer-brand);
+      color: var(--content-inverse);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-sm);
+    }
+
+    .avatar-sm {
+      width: 28px;
+      height: 28px;
+      font-size: var(--font-size-xs);
+    }
+
+    .avatar-lg {
+      width: 48px;
+      height: 48px;
+      font-size: var(--font-size-lg);
+    }
+
+    /* Main Layout */
+    .main {
+      padding: var(--spacing-24) 0;
+    }
+
+    .main .container {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: var(--spacing-24);
+    }
+
+    /* Category Tabs */
+    .category-tabs {
+      display: flex;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-24);
+      background: var(--layer-base);
+      padding: var(--spacing-12);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .category-tab {
+      padding: var(--spacing-8) var(--spacing-16);
+      border-radius: var(--radius-md);
+      font-size: var(--text-label-m-size);
+      font-weight: var(--text-label-m-weight);
+      color: var(--content-subtle);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 200ms;
+    }
+
+    .category-tab:hover {
+      background: var(--layer-low);
+      color: var(--content-primary);
+    }
+
+    .category-tab.active {
+      background: var(--color-brand-soft);
+      color: var(--content-brand);
+    }
+
+    /* Post List */
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-12);
+    }
+
+    .post-card {
+      background: var(--layer-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-20);
+      transition: all 200ms;
+      cursor: pointer;
+    }
+
+    .post-card:hover {
+      border-color: var(--border-brand);
+      box-shadow: var(--shadow-md);
+    }
+
+    .post-header {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-12);
+      margin-bottom: var(--spacing-12);
+    }
+
+    .post-author {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--content-highlight);
+    }
+
+    .post-meta {
+      font-size: var(--font-size-xs);
+      color: var(--content-muted);
+    }
+
+    .post-badge {
+      margin-left: auto;
+      padding: var(--spacing-4) var(--spacing-8);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .post-badge.hot {
+      background: var(--informative-red-soft);
+      color: var(--informative-red);
+    }
+
+    .post-badge.new {
+      background: var(--informative-blue-soft);
+      color: var(--informative-blue);
+    }
+
+    .post-badge.solved {
+      background: var(--informative-green-soft);
+      color: var(--informative-green);
+    }
+
+    .post-title {
+      font-size: var(--text-label-l-size);
+      font-weight: var(--text-label-l-weight);
+      color: var(--content-highlight);
+      margin-bottom: var(--spacing-8);
+      line-height: 1.4;
+    }
+
+    .post-excerpt {
+      font-size: var(--font-size-sm);
+      color: var(--content-subtle);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-16);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .post-tags {
+      display: flex;
+      gap: var(--spacing-8);
+      margin-bottom: var(--spacing-16);
+    }
+
+    .tag {
+      padding: var(--spacing-4) var(--spacing-10);
+      background: var(--layer-low);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      color: var(--content-subtle);
+      transition: all 200ms;
+    }
+
+    .tag:hover {
+      background: var(--color-brand-soft);
+      color: var(--content-brand);
+    }
+
+    .post-footer {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-20);
+      padding-top: var(--spacing-16);
+      border-top: 1px solid var(--border-divider);
+    }
+
+    .post-stat {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-6);
+      font-size: var(--font-size-sm);
+      color: var(--content-subtle);
+    }
+
+    .post-stat.liked {
+      color: var(--informative-red);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-20);
+    }
+
+    .sidebar-card {
+      background: var(--layer-base);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-20);
+    }
+
+    .sidebar-title {
+      font-size: var(--text-label-l-size);
+      font-weight: var(--text-label-l-weight);
+      color: var(--content-highlight);
+      margin-bottom: var(--spacing-16);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-8);
+    }
+
+    /* Write CTA */
+    .write-cta {
+      background: linear-gradient(135deg, var(--layer-brand) 0%, #ff8533 100%);
+      border: none;
+      text-align: center;
+    }
+
+    .write-cta-title {
+      font-size: var(--text-label-l-size);
+      font-weight: var(--text-label-l-weight);
+      color: var(--content-inverse);
+      margin-bottom: var(--spacing-8);
+    }
+
+    .write-cta-desc {
+      font-size: var(--font-size-sm);
+      color: var(--content-inverse);
+      opacity: 0.9;
+      margin-bottom: var(--spacing-16);
+    }
+
+    .write-cta .btn {
+      width: 100%;
+      background: var(--layer-base);
+      color: var(--content-brand);
+    }
+
+    .write-cta .btn:hover {
+      background: var(--color-brand-soft);
+    }
+
+    /* Popular Tags */
+    .popular-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-8);
+    }
+
+    .popular-tag {
+      padding: var(--spacing-6) var(--spacing-12);
+      background: var(--layer-low);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-sm);
+      color: var(--content-primary);
+      cursor: pointer;
+      transition: all 200ms;
+    }
+
+    .popular-tag:hover {
+      background: var(--color-brand-soft);
+      color: var(--content-brand);
+    }
+
+    .popular-tag .count {
+      color: var(--content-muted);
+      margin-left: var(--spacing-4);
+    }
+
+    /* Top Contributors */
+    .contributor-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-12);
+    }
+
+    .contributor-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-12);
+    }
+
+    .contributor-rank {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      color: var(--content-muted);
+    }
+
+    .contributor-rank.top {
+      background: var(--color-brand-soft);
+      color: var(--content-brand);
+      border-radius: var(--radius-full);
+    }
+
+    .contributor-info {
+      flex: 1;
+    }
+
+    .contributor-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--content-highlight);
+    }
+
+    .contributor-points {
+      font-size: var(--font-size-xs);
+      color: var(--content-subtle);
+    }
+
+    /* Announcements */
+    .announcement-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-12);
+    }
+
+    .announcement-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-10);
+      padding-bottom: var(--spacing-12);
+      border-bottom: 1px solid var(--border-divider);
+    }
+
+    .announcement-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .announcement-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-brand-soft);
+      color: var(--content-brand);
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+    }
+
+    .announcement-content {
+      flex: 1;
+    }
+
+    .announcement-title {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--content-highlight);
+      margin-bottom: var(--spacing-4);
+      line-height: 1.4;
+    }
+
+    .announcement-date {
+      font-size: var(--font-size-xs);
+      color: var(--content-muted);
+    }
+
+    /* Featured Post */
+    .featured-post {
+      background: var(--layer-base);
+      border: 2px solid var(--border-brand);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-24);
+      margin-bottom: var(--spacing-24);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-post::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--layer-brand);
+    }
+
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-6);
+      background: var(--color-brand-soft);
+      color: var(--content-brand);
+      padding: var(--spacing-6) var(--spacing-12);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--spacing-16);
+    }
+
+    .featured-title {
+      font-size: var(--text-heading-size);
+      font-weight: var(--text-heading-weight);
+      color: var(--content-highlight);
+      margin-bottom: var(--spacing-12);
+      line-height: 1.4;
+    }
+
+    .featured-excerpt {
+      font-size: var(--text-body-r-size);
+      color: var(--content-subtle);
+      line-height: 1.6;
+      margin-bottom: var(--spacing-16);
+    }
+
+    .featured-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .featured-author {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-12);
+    }
+
+    .featured-author-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--content-highlight);
+    }
+
+    .featured-author-date {
+      font-size: var(--font-size-xs);
+      color: var(--content-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .main .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .search-box {
+        display: none;
+      }
+
+      .category-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <a href="index.html" class="logo">Genify <span>Community</span></a>
+      <nav class="nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">강의</a></li>
+          <li><a href="#" class="nav-link active">커뮤니티</a></li>
+          <li><a href="#" class="nav-link">Q&A</a></li>
+          <li><a href="#" class="nav-link">스터디</a></li>
+        </ul>
+        <div class="nav-actions">
+          <div class="search-box">
+            <i data-lucide="search" style="width: 16px; height: 16px; color: var(--content-muted);"></i>
+            <input type="text" placeholder="검색어를 입력하세요">
+          </div>
+          <button class="icon-btn">
+            <i data-lucide="bell" style="width: 20px; height: 20px;"></i>
+            <span class="badge"></span>
+          </button>
+          <div class="avatar">JK</div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="container">
+      <!-- Content -->
+      <div class="content">
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+          <button class="category-tab active">전체</button>
+          <button class="category-tab">자유게시판</button>
+          <button class="category-tab">질문/답변</button>
+          <button class="category-tab">프로젝트 공유</button>
+          <button class="category-tab">스터디 모집</button>
+          <button class="category-tab">취업/이직</button>
+        </div>
+
+        <!-- Featured Post -->
+        <div class="featured-post">
+          <div class="featured-label">
+            <i data-lucide="pin" style="width: 12px; height: 12px;"></i>
+            공지
+          </div>
+          <h2 class="featured-title">2025년 Genify 커뮤니티 가이드라인 업데이트 안내</h2>
+          <p class="featured-excerpt">
+            안녕하세요, Genify 커뮤니티 여러분! 더 나은 커뮤니티 환경을 위해 가이드라인이 업데이트되었습니다.
+            AI 관련 토론 시 지켜야 할 에티켓과 새로운 뱃지 시스템에 대해 확인해 주세요.
+          </p>
+          <div class="featured-footer">
+            <div class="featured-author">
+              <div class="avatar" style="background: var(--informative-blue);">G</div>
+              <div>
+                <div class="featured-author-name">Genify Team</div>
+                <div class="featured-author-date">2025.01.15</div>
+              </div>
+            </div>
+            <button class="btn btn-secondary btn-sm">자세히 보기</button>
+          </div>
+        </div>
+
+        <!-- Post List -->
+        <div class="post-list">
+          <!-- Post 1 -->
+          <article class="post-card">
+            <div class="post-header">
+              <div class="avatar avatar-sm" style="background: #6366f1;">LS</div>
+              <div>
+                <div class="post-author">이성민</div>
+                <div class="post-meta">10분 전</div>
+              </div>
+              <span class="post-badge hot">HOT</span>
+            </div>
+            <h3 class="post-title">Claude 3.5로 업무 자동화 시스템 구축한 후기 공유합니다</h3>
+            <p class="post-excerpt">
+              안녕하세요! 저는 마케팅 팀에서 일하고 있는데요, Claude 3.5를 활용해서 반복 업무를 자동화한 경험을 공유하려고 합니다.
+              특히 보고서 작성과 데이터 분석 부분에서 엄청난 시간 절약이 있었어요...
+            </p>
+            <div class="post-tags">
+              <span class="tag">Claude</span>
+              <span class="tag">업무자동화</span>
+              <span class="tag">후기</span>
+            </div>
+            <div class="post-footer">
+              <div class="post-stat liked">
+                <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                128
+              </div>
+              <div class="post-stat">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                45
+              </div>
+              <div class="post-stat">
+                <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                1.2k
+              </div>
+              <div class="post-stat">
+                <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
+                32
+              </div>
+            </div>
+          </article>
+
+          <!-- Post 2 -->
+          <article class="post-card">
+            <div class="post-header">
+              <div class="avatar avatar-sm" style="background: #ec4899;">KJ</div>
+              <div>
+                <div class="post-author">김지현</div>
+                <div class="post-meta">1시간 전</div>
+              </div>
+              <span class="post-badge solved">해결됨</span>
+            </div>
+            <h3 class="post-title">[질문] ChatGPT API rate limit 관련 질문있습니다</h3>
+            <p class="post-excerpt">
+              현재 GPT-4 API를 사용 중인데, rate limit에 자주 걸립니다. 혹시 효율적으로 API 호출을 관리하는 방법이 있을까요?
+              현재는 단순히 sleep으로 대기하고 있는데...
+            </p>
+            <div class="post-tags">
+              <span class="tag">ChatGPT</span>
+              <span class="tag">API</span>
+              <span class="tag">질문</span>
+            </div>
+            <div class="post-footer">
+              <div class="post-stat">
+                <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                24
+              </div>
+              <div class="post-stat">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                12
+              </div>
+              <div class="post-stat">
+                <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                456
+              </div>
+              <div class="post-stat">
+                <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
+                8
+              </div>
+            </div>
+          </article>
+
+          <!-- Post 3 -->
+          <article class="post-card">
+            <div class="post-header">
+              <div class="avatar avatar-sm" style="background: #10b981;">PM</div>
+              <div>
+                <div class="post-author">박민수</div>
+                <div class="post-meta">3시간 전</div>
+              </div>
+              <span class="post-badge new">NEW</span>
+            </div>
+            <h3 class="post-title">Midjourney v6 vs DALL-E 3 비교 분석 (실제 결과물 포함)</h3>
+            <p class="post-excerpt">
+              두 AI 이미지 생성 도구를 같은 프롬프트로 테스트해봤습니다. 캐릭터 일러스트, 풍경화, 제품 목업 등
+              다양한 카테고리별로 비교해봤는데요, 결과가 꽤 흥미롭습니다...
+            </p>
+            <div class="post-tags">
+              <span class="tag">Midjourney</span>
+              <span class="tag">DALL-E</span>
+              <span class="tag">비교분석</span>
+            </div>
+            <div class="post-footer">
+              <div class="post-stat">
+                <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                89
+              </div>
+              <div class="post-stat">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                34
+              </div>
+              <div class="post-stat">
+                <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                892
+              </div>
+              <div class="post-stat">
+                <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
+                56
+              </div>
+            </div>
+          </article>
+
+          <!-- Post 4 -->
+          <article class="post-card">
+            <div class="post-header">
+              <div class="avatar avatar-sm" style="background: #f59e0b;">CH</div>
+              <div>
+                <div class="post-author">최하영</div>
+                <div class="post-meta">5시간 전</div>
+              </div>
+            </div>
+            <h3 class="post-title">[스터디 모집] AI 프롬프트 엔지니어링 스터디 멤버 구합니다 (주 1회)</h3>
+            <p class="post-excerpt">
+              함께 프롬프트 엔지니어링 공부하실 분 모집합니다! 매주 토요일 오전 10시에 온라인으로 진행 예정이고,
+              각자 실험한 프롬프트를 공유하고 피드백하는 형식으로...
+            </p>
+            <div class="post-tags">
+              <span class="tag">스터디모집</span>
+              <span class="tag">프롬프트엔지니어링</span>
+            </div>
+            <div class="post-footer">
+              <div class="post-stat">
+                <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                42
+              </div>
+              <div class="post-stat">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                28
+              </div>
+              <div class="post-stat">
+                <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                567
+              </div>
+              <div class="post-stat">
+                <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
+                15
+              </div>
+            </div>
+          </article>
+
+          <!-- Post 5 -->
+          <article class="post-card">
+            <div class="post-header">
+              <div class="avatar avatar-sm" style="background: #8b5cf6;">JH</div>
+              <div>
+                <div class="post-author">정현우</div>
+                <div class="post-meta">어제</div>
+              </div>
+            </div>
+            <h3 class="post-title">비개발자가 n8n + AI로 업무 자동화 파이프라인 만든 썰</h3>
+            <p class="post-excerpt">
+              코딩 1도 모르는 마케터인데, n8n이랑 ChatGPT API 연결해서 콘텐츠 제작 파이프라인 만들었습니다.
+              생각보다 어렵지 않더라고요. 과정 공유해드릴게요...
+            </p>
+            <div class="post-tags">
+              <span class="tag">n8n</span>
+              <span class="tag">노코드</span>
+              <span class="tag">자동화</span>
+            </div>
+            <div class="post-footer">
+              <div class="post-stat">
+                <i data-lucide="heart" style="width: 16px; height: 16px;"></i>
+                156
+              </div>
+              <div class="post-stat">
+                <i data-lucide="message-circle" style="width: 16px; height: 16px;"></i>
+                67
+              </div>
+              <div class="post-stat">
+                <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                2.1k
+              </div>
+              <div class="post-stat">
+                <i data-lucide="bookmark" style="width: 16px; height: 16px;"></i>
+                89
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <!-- Write CTA -->
+        <div class="sidebar-card write-cta">
+          <div class="write-cta-title">글을 작성해보세요</div>
+          <div class="write-cta-desc">AI 경험과 지식을 공유해주세요</div>
+          <button class="btn btn-lg">
+            <i data-lucide="pen-line" style="width: 18px; height: 18px;"></i>
+            글쓰기
+          </button>
+        </div>
+
+        <!-- Announcements -->
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">
+            <i data-lucide="megaphone" style="width: 18px; height: 18px; color: var(--content-brand);"></i>
+            공지사항
+          </h3>
+          <div class="announcement-list">
+            <div class="announcement-item">
+              <div class="announcement-icon">
+                <i data-lucide="gift" style="width: 14px; height: 14px;"></i>
+              </div>
+              <div class="announcement-content">
+                <div class="announcement-title">1월 베스트 게시글 이벤트</div>
+                <div class="announcement-date">2025.01.20</div>
+              </div>
+            </div>
+            <div class="announcement-item">
+              <div class="announcement-icon">
+                <i data-lucide="calendar" style="width: 14px; height: 14px;"></i>
+              </div>
+              <div class="announcement-content">
+                <div class="announcement-title">오프라인 밋업 참가자 모집</div>
+                <div class="announcement-date">2025.01.18</div>
+              </div>
+            </div>
+            <div class="announcement-item">
+              <div class="announcement-icon">
+                <i data-lucide="book-open" style="width: 14px; height: 14px;"></i>
+              </div>
+              <div class="announcement-content">
+                <div class="announcement-title">커뮤니티 가이드라인 업데이트</div>
+                <div class="announcement-date">2025.01.15</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Popular Tags -->
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">
+            <i data-lucide="hash" style="width: 18px; height: 18px; color: var(--content-brand);"></i>
+            인기 태그
+          </h3>
+          <div class="popular-tags">
+            <span class="popular-tag">ChatGPT <span class="count">234</span></span>
+            <span class="popular-tag">Claude <span class="count">187</span></span>
+            <span class="popular-tag">Midjourney <span class="count">156</span></span>
+            <span class="popular-tag">프롬프트 <span class="count">142</span></span>
+            <span class="popular-tag">자동화 <span class="count">98</span></span>
+            <span class="popular-tag">API <span class="count">76</span></span>
+            <span class="popular-tag">n8n <span class="count">54</span></span>
+            <span class="popular-tag">GPTs <span class="count">48</span></span>
+          </div>
+        </div>
+
+        <!-- Top Contributors -->
+        <div class="sidebar-card">
+          <h3 class="sidebar-title">
+            <i data-lucide="trophy" style="width: 18px; height: 18px; color: var(--content-brand);"></i>
+            이번 주 활동왕
+          </h3>
+          <div class="contributor-list">
+            <div class="contributor-item">
+              <div class="contributor-rank top">1</div>
+              <div class="avatar avatar-sm" style="background: #6366f1;">LS</div>
+              <div class="contributor-info">
+                <div class="contributor-name">이성민</div>
+                <div class="contributor-points">1,240 포인트</div>
+              </div>
+            </div>
+            <div class="contributor-item">
+              <div class="contributor-rank top">2</div>
+              <div class="avatar avatar-sm" style="background: #10b981;">PM</div>
+              <div class="contributor-info">
+                <div class="contributor-name">박민수</div>
+                <div class="contributor-points">980 포인트</div>
+              </div>
+            </div>
+            <div class="contributor-item">
+              <div class="contributor-rank top">3</div>
+              <div class="avatar avatar-sm" style="background: #8b5cf6;">JH</div>
+              <div class="contributor-info">
+                <div class="contributor-name">정현우</div>
+                <div class="contributor-points">876 포인트</div>
+              </div>
+            </div>
+            <div class="contributor-item">
+              <div class="contributor-rank">4</div>
+              <div class="avatar avatar-sm" style="background: #ec4899;">KJ</div>
+              <div class="contributor-info">
+                <div class="contributor-name">김지현</div>
+                <div class="contributor-points">654 포인트</div>
+              </div>
+            </div>
+            <div class="contributor-item">
+              <div class="contributor-rank">5</div>
+              <div class="avatar avatar-sm" style="background: #f59e0b;">CH</div>
+              <div class="contributor-info">
+                <div class="contributor-name">최하영</div>
+                <div class="contributor-points">543 포인트</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
