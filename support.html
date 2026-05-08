@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — Pepperlily Studio</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #9a9a9a;
+      --gray-600: #555555;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .logo { font-size: 15px; font-weight: 600; }
+    .logo span { color: var(--accent); }
+
+    .nav { display: flex; gap: 36px; }
+    .nav a { font-size: 14px; color: var(--gray-600); font-weight: 500; transition: color 150ms; }
+    .nav a:hover { color: var(--black); }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 140px 48px 100px;
+    }
+
+    .page-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .page-title {
+      font-size: 48px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .page-desc {
+      font-size: 17px;
+      color: var(--gray-600);
+      margin-bottom: 64px;
+      line-height: 1.7;
+    }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: 64px;
+    }
+
+    .faq-item {
+      padding: 28px 0;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .faq-q {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+
+    .faq-a {
+      font-size: 15px;
+      color: var(--gray-600);
+      line-height: 1.7;
+    }
+
+    .contact-box {
+      background: var(--gray-100);
+      border-radius: 16px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .contact-box p {
+      font-size: 15px;
+      color: var(--gray-600);
+      margin-bottom: 24px;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: 100px;
+      transition: opacity 150ms;
+    }
+
+    .contact-btn:hover { opacity: 0.85; }
+
+    .footer {
+      background: var(--gray-100);
+      padding: 32px 48px;
+      border-top: 1px solid var(--gray-200);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo { font-size: 14px; font-weight: 600; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 13px; color: var(--gray-400); }
+
+    @media (max-width: 768px) {
+      .header { padding: 16px 24px; }
+      .page { padding: 120px 24px 80px; }
+      .page-title { font-size: 36px; }
+      .footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <a href="index.html" class="logo">Pepperlily <span>Studio</span></a>
+    <nav class="nav">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#services">Services</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <div class="page">
+    <p class="page-eyebrow">Support</p>
+    <h1 class="page-title">How can we help?</h1>
+    <p class="page-desc">
+      Pepperlily Studio designs and develops apps in-house — from concept to App Store. If you have a question about one of our products, you're in the right place.
+    </p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Who makes your apps?</div>
+        <div class="faq-a">All apps published by Pepperlily Studio are designed and developed entirely in-house. We handle everything from UX research and product design to development and release.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I report a bug or issue?</div>
+        <div class="faq-a">Please email us with a description of the issue, your device model, and OS version. We typically respond within 1–2 business days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do I request a feature?</div>
+        <div class="faq-a">We love hearing from users. Send us your ideas at the email below and we'll consider them for future updates.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Where can I find your privacy policy?</div>
+        <div class="faq-a">Each app includes a privacy policy link within the app and on its App Store listing page.</div>
+      </div>
+    </div>
+
+    <div class="contact-box">
+      <h2>Still need help?</h2>
+      <p>Send us an email and we'll get back to you as soon as possible.</p>
+      <a href="mailto:pepperlilystudio@gmail.com" class="contact-btn">pepperlilystudio@gmail.com</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">Pepperlily <span>Studio</span></div>
+      <div class="footer-copy">&copy; 2025 Pepperlily Studio. All rights reserved.</div>
+    </div>
+  </footer>
+
+</body>
+</html>
